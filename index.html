@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta content="IE=edge" http-equiv="X-UA-Compatible" />
@@ -13,66 +14,71 @@
 </head>
 
 <body class="minimal">
-  <div id="loader">
-    <div class="blackhole">
-      <div class="blackhole-circle"></div>
-      <div class="blackhole-disc"></div>
-    </div>
-  
-    <div class="curve">
-      <svg viewBox="0 0 500 500">
-        <path id="loading" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"></path>
-        <text width="500">
-          <textPath xlink:href="#loading">
-            loading...
-          </textPath>
-        </text>
-      </svg>
+  <div class="loader-container">
+    <div id="loader">
+      <div class="blackhole">
+        <div class="blackhole-circle"></div>
+        <div class="blackhole-disc"></div>
+      </div>
+
+      <div class="curve">
+        <svg viewBox="0 0 500 500">
+          <path id="loading" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"></path>
+          <text width="500">
+            <textPath xlink:href="#loading">
+              loading...
+            </textPath>
+          </text>
+        </svg>
+      </div>
     </div>
   </div>
-  <div id="site-border-left"></div>
-  <div id="site-border-right"></div>
-  <div id="site-border-top"></div>
-  <div id="site-border-bottom"></div>
-  <header>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
-          aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="./index.html" title="">01 : Home</a></li>
-            <li><a href="./works.html" title="">02 : Works</a></li>
-            <li><a href="./about.html" title="">03 : About me</a></li>
-            <li><a href="./contact.html" title="">04 : Contact</a></li>
-          </ul>
+  <div class="content-container">
+    <div id="site-border-left"></div>
+    <div id="site-border-right"></div>
+    <div id="site-border-top"></div>
+    <div id="site-border-bottom"></div>
+    <header>
+      <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+            aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="./index.html" title="">01 : Home</a></li>
+              <li><a href="./works.html" title="">02 : Works</a></li>
+              <li><a href="./about.html" title="">03 : About me</a></li>
+              <li><a href="./contact.html" title="">04 : Contact</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-  </header>
-  <div class="hero-full-container background-image-container white-text-container"
-    style="background-image: url('./assets/images/space.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="hero-full-wrapper">
-            <div class="text-content">
-              <h1>
-                Hello,<br />
-                I am
-                <span id="typed-strings">
-                  <span>Karan Kumar</span>
-                  <span>a Full Stack Developer</span>
-                  <span>working as a Freelance</span>
-                </span>
-                <span id="typed"></span>
-              </h1>
+      </nav>
+    </header>
+    <div class="hero-full-container background-image-container white-text-container"
+      style="background-image: url('./assets/images/space.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="hero-full-wrapper">
+              <div class="text-content">
+                <h1>
+                  Hello,<br />
+                  I am
+                  <span id="typed-strings">
+                    <span>working as a Freelancer</span>
+                    <span>Karan Kumar</span>
+                    <span>a Full Stack Developer</span>
+                  </span>
+                  <span id="typed"></span>
+                </h1>
+              </div>
             </div>
           </div>
         </div>
@@ -85,15 +91,20 @@
       type();
       movingBackgroundImage();
     });
-    document.onreadystatechange = function() {
-      if (document.readyState !== "complete") {
-          document.querySelector("body").style.visibility = "hidden";
-          document.querySelector("#loader").style.visibility = "visible";
-      } else {
-          document.querySelector("#loader").style.display = "none";
-          document.querySelector("body").style.visibility = "visible";
-      }
-    };
+    let timeout;
+    const loader = document.querySelector('.loader-container');
+    const body = document.querySelector('.content-container');
+    function loadingFun() {
+      document.querySelector("body").style.backgroundColor = "#000";
+      body.style.display = "none";
+      timeout = setTimeout(makevisible, 4500);
+    }
+    function makevisible() {
+      loader.style.display = "none";
+      body.style.display = "block";
+
+    }
+    loadingFun();
   </script>
   <script type="text/javascript" src="./main.js"></script>
 </body>
